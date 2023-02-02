@@ -32,7 +32,7 @@ function saveEditForm(e) {
 
 profileEdit.addEventListener("click", () => {
   addContextToEditForm(userName.textContent, userStatus.textContent)
-  openPopup(profileEdit)
+  openPopup(popupEdit)
 });
 
 popupCloseList.forEach((btn) => {
