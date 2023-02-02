@@ -1,0 +1,19 @@
+.header {
+  margin-top: 50px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid #545454;
+  margin-bottom: 40px;
+  width: 100%;
+  max-width: 880px;
+  width: 100%;
+  box-sizing: border-box;
+}
+@media (max-width: 920px) {
+  .header {
+    margin-top: 28px;
+    padding-bottom: 27px;
+    padding-left: 25px;
+    padding-right: 19px;
+    margin-bottom: 43px;
+  }
+}

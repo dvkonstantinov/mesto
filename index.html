@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="pages/index.css" />
+  </head>
+  <body class="page">
+    <header class="header">
+      <img class="logo" src="images/logo.svg" alt="" class="logo" />
+    </header>
+    <main class="content">
+      <section class="profile">
+        <div class="profile__content">
+          <img class="profile__image" src="/images/profile-image.jpg" alt="Жак ив кусто" />
+          <div class="profile__info">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button class="profile__edit button button_type_edit" type="button" aria-label="Редактировать профиль"></button>
+            <p class="profile__status">Исследователь океана</p>
+          </div>
+        </div>
+        <button class="profile_add button button_type_add" aria-label="Добавить" type="button"></button>
+      </section>
+      <section class="cards">
+        <div class="card">
+          <div class="card__inner">
+            <img class="card__image" src="/images/card-Dombai.jpg" alt="fsda" />
+            <div class="card__caption">
+              <h2 class="card__title">Карачаевск</h2>
+              <button class="card__like button button_type_like" aria-label="Лайкнуть" type="button"></button>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__inner">
+            <img class="card__image" src="/images/card-Karachaevsk.jpg" alt="fsda" />
+            <div class="card__caption">
+              <h2 class="card__title">Карачаевск-fdsjhafjlks</h2>
+              <button class="card__like button button_type_like" aria-label="Лайкнуть" type="button"></button>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__inner">
+            <img class="card__image" src="/images/card-Karachaevsk.jpg" alt="fsda" />
+            <div class="card__caption">
+              <h2 class="card__title">Карачаевск-fdsjhafjlks</h2>
+              <button class="card__like button button_type_like" aria-label="Лайкнуть" type="button"></button>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__inner">
+            <img class="card__image" src="/images/card-Karachaevsk.jpg" alt="fsda" />
+            <div class="card__caption">
+              <h2 class="card__title">Карачаевск-fdsjhafjlks</h2>
+              <button class="card__like button button_type_like" aria-label="Лайкнуть" type="button"></button>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__inner">
+            <img class="card__image" src="/images/card-Karachaevsk.jpg" alt="fsda" />
+            <div class="card__caption">
+              <h2 class="card__title">Карачаевск-fdsjhafjlks</h2>
+              <button class="card__like button button_type_like" aria-label="Лайкнуть" type="button"></button>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__inner">
+            <img class="card__image" src="/images/card-Karachaevsk.jpg" alt="fsda" />
+            <div class="card__caption">
+              <h2 class="card__title">Карачаевск-fdsjhafjlks</h2>
+              <button class="card__like button button_type_like" aria-label="Лайкнуть" type="button"></button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer container">
+      <p class="footer__copyright">© 2023 Mesto Russia</p>
+    </footer>
+    <section class="popup popup_edit">
+      <div class="popup__container popup__container_edit">
+        <button class="popup__close button"></button>
+        <form class="form form__edit" method="POST" name="formEdit">
+          <h3 class="form__title">Редактировать профиль</h3>
+          <div class="form__group">
+            <input id="name" name="name" type="text" class="form__input form__input_type_text" placeholder="Имя" required />
+          </div>
+          <div class="form__group">
+            <input id="status" name="status" type="text" class="form__input form__input_type_text" placeholder="Статус" required />
+          </div>
+          <button class="form__button" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </section>
+    <script src="/scripts/index.js"></script>
+  </body>
+</html>

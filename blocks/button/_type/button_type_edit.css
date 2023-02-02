@@ -1,0 +1,20 @@
+.button_type_edit {
+  border: 1px solid #fff;
+  height: 24px;
+  width: 24px;
+  background-image: url(../../../images/icon-edit.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  top: -15px;
+}
+
+@media (max-width: 830px) {
+  .button_type_edit {
+    width: 18px;
+    height: 18px;
+    top: 8px;
+    right: calc(50% - 122px);
+    position: absolute;
+  }
+}
