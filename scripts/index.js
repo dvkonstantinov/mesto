@@ -96,18 +96,6 @@ popupCloseList.forEach((btn) => {
   btn.addEventListener("click", () => closePopup(popup));
 });
 
-cardLikeList.forEach((btn) => {
-  const btnLike = btn.closest(".card__inner").querySelector(".card__like");
-  btn.addEventListener("click", () => likeCard(btnLike));
-});
-
-cardRemoveList.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const card = btn.closest(".card");
-    removeCard(card);
-  });
-});
-
 formAdd.addEventListener("submit", saveAddForm);
 
 cardAddBtn.addEventListener("click", () => openPopup(popupAdd));
