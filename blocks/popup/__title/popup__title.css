@@ -3,13 +3,12 @@
   font-size: 24px;
   line-height: 29px;
   margin: 0;
-  margin-bottom: 46px;
 }
 
 
 @media (max-width: 580px) {
   .popup__title {
-    margin-bottom: 75px;
+    
     font-size: 18px;
     line-height: 22px;
   }

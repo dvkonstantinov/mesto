@@ -6,4 +6,13 @@
  color: #000;
  font-size: 14px;
  line-height: 17px;
+ position: relative;
+}
+
+
+.form__input:focus {
+  border-bottom: 1px solid rgba(0, 0, 0, 1);
+}
+.form__input::placeholder {
+  color: #C4C4C4;
 }

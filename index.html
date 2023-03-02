@@ -33,12 +33,10 @@
         <button class="popup__close button"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
         <form class="form form__edit" method="POST" name="formEdit" id="formEdit">
-          <div class="form__group">
-            <input id="name" name="name" type="text" class="form__input form__input_type_text" placeholder="Имя" required />
-          </div>
-          <div class="form__group">
-            <input id="status" name="status" type="text" class="form__input form__input_type_text" placeholder="Статус" required />
-          </div>
+          <input id="name-input" name="name" type="text" class="form__input form__input_type_text" placeholder="Имя" minlength="2" maxlength="40" required />
+          <span id="name-input-error" class="form__input-error"></span>
+          <input id="status-input" name="status" type="text" class="form__input form__input_type_text" placeholder="Статус" minlength="2" maxlength="200" required />
+          <span id="status-input-error" class="form__input-error"></span>
           <button class="form__button button" type="submit">Сохранить</button>
         </form>
       </div>
@@ -48,12 +46,10 @@
         <button class="popup__close button"></button>
         <h3 class="popup__title">Новое место</h3>
         <form class="form form__edit" method="POST" name="formEdit" id="formAdd">
-          <div class="form__group">
-            <input id="placeName" name="placeName" type="text" class="form__input form__input_type_text" placeholder="Название" required />
-          </div>
-          <div class="form__group">
-            <input id="placeUrl" name="placeUrl" type="text" class="form__input form__input_type_text" placeholder="Ссылка на картинку" required />
-          </div>
+          <input id="placeName-input" name="placeName" type="text" class="form__input form__input_type_text" placeholder="Название" minlength="2" maxlength="30" required />
+          <span id="placeName-input-error" class="form__input-error"></span>
+          <input id="placeUrl-input" name="placeUrl" type="url" class="form__input form__input_type_text" placeholder="Ссылка на картинку" required />
+          <span id="placeUrl-input-error" class="form__input-error"></span>
           <button class="form__button button" type="submit">Сохранить</button>
         </form>
       </div>
@@ -77,7 +73,6 @@
         </div>
       </div>
     </template>
-    <script src="scripts/cards.js"></script>
-    <script src="scripts/index.js"></script>
+    <script type="module" src="scripts/index.js"></script>
   </body>
 </html>
