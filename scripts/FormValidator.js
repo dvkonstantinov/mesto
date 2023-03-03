@@ -22,10 +22,6 @@ class FormValidator {
     });
   }
 
-  resetForm() {
-    this._formElement.reset()
-  }
-
   _setEventListeners() {
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     this._submitButton = this._formElement.querySelector(this._submitButtonSelector);

@@ -103,10 +103,8 @@ function saveAddForm(e) {
   const cardElement = createCard(cardData, "#cardTemplate", openImagePopup);
   cardsContainer.prepend(cardElement);
   closePopup(popupAdd);
-  const submitButton = form.querySelector(".form__button");
-  submitButton.classList.add("form__button_disabled");
-  submitButton.setAttribute("disabled", "");
-  formAdd.resetForm()
+  form.reset()
+  formAdd.resetValidation()
 }
 
 function closePopupChoice(e, popup) {
