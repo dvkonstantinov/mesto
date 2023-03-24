@@ -1,7 +1,7 @@
 .button_type_remove {
   width: 18px;
   height: 19px;
-  background: no-repeat center url(../../../images/icon-trash.svg);
+  background: no-repeat center url('../../../images/icon-trash.svg');
   background-size: contain;
   position: absolute;
   z-index: 1;

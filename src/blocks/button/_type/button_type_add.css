@@ -2,7 +2,7 @@
   height: 50px;
   width: 150px;
   border: 2px solid #fff;
-  background: no-repeat center url(../../../images/icon-plus.svg)
+  background: no-repeat center url('../../../images/icon-plus.svg')
 }
 
 @media (max-width: 830px) {

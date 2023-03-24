@@ -5,16 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="pages/index.css" />
+    <!-- <link rel="stylesheet" href="pages/index.css" /> -->
   </head>
   <body class="page">
     <header class="header">
-      <img class="logo" src="images/logo.svg" alt="" class="logo" />
+      <img class="logo" src="<%=require('./images/logo.svg')%>" alt="" class="logo" />
     </header>
     <main class="content">
       <section class="profile">
         <div class="profile__content">
-          <img class="profile__image" src="images/profile-image.jpg" alt="Жак ив кусто" />
+          <img class="profile__image" src="<%=require('./images/profile-image.jpg')%>" alt="Жак ив кусто" />
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button class="profile__edit button button_type_edit" type="button" aria-label="Редактировать профиль"></button>
@@ -64,7 +64,7 @@
     <template id="cardTemplate">
       <div class="card">
         <div class="card__inner">
-          <img class="card__image" src="images/card-Karachaevsk.jpg" alt="fsda" />
+          <img class="card__image" src="" alt="" />
           <div class="card__caption">
             <h2 class="card__title"></h2>
             <button class="card__like button button_type_like" aria-label="Лайкнуть" type="button"></button>
@@ -73,6 +73,6 @@
         </div>
       </div>
     </template>
-    <script type="module" src="scripts/index.js"></script>
+    <!-- <script type="module" src="pages/index.js"></script> -->
   </body>
 </html>

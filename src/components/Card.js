@@ -1,11 +1,11 @@
 export { Card };
 class Card {
-  constructor(data, templateSelector, callbackOpenPopup) {
+  constructor(data, templateSelector, handleCardClick) {
     this._templateSelector = templateSelector;
     this._title = data.name;
     this._alt = data.name;
     this._url = data.link;
-    this._callbackOpenPopup = callbackOpenPopup;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -34,7 +34,7 @@ class Card {
       this._handleRemoveCard();
     });
     this._cardImage.addEventListener("click", () => {
-      this._callbackOpenPopup(this._title, this._url);
+      this._handleCardClick(this._title, this._url);
     });
   }
 
