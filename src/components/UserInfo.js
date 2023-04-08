@@ -1,9 +1,10 @@
 export { UserInfo };
 
 class UserInfo {
-  constructor({ nameSelector, statusSelector }) {
+  constructor({ nameSelector, statusSelector, userAvatar }) {
     this._nameElement = document.querySelector(nameSelector);
     this._statusElement = document.querySelector(statusSelector);
+    this._avatarElement = document.querySelector(userAvatar)
   }
 
   getUserInfo() {
@@ -13,8 +14,20 @@ class UserInfo {
     };
   }
 
-  setUserInfo(new_name, new_status) {
-    this._nameElement.textContent = new_name;
-    this._statusElement.textContent = new_status;
+  setUserInfo(newName, newStatus) {
+    this._nameElement.textContent = newName;
+    this._statusElement.textContent = newStatus;
+  }
+
+  setUserAvatar(newAvatarUrl) {
+    this._avatarElement.src = newAvatarUrl
+  }
+
+  setUserId(userId) {
+    this._userId = userId
+  }
+
+  getUserId() {
+    return this._userId
   }
 }

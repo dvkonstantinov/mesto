@@ -14,7 +14,10 @@
     <main class="content">
       <section class="profile">
         <div class="profile__content">
-          <img class="profile__image" src="<%=require('./images/profile-image.jpg')%>" alt="Жак ив кусто" />
+          <button type="button" class="profile__image-button">
+            <img class="profile__image" src="<%=require('./images/profile-image.jpg')%>" alt="Жак ив кусто" />
+            <!-- <div class="profile__image-overlay"></div> -->
+          </button>
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button class="profile__edit button button_type_edit" type="button" aria-label="Редактировать профиль"></button>
@@ -45,12 +48,12 @@
       <div class="popup__container">
         <button class="popup__close button"></button>
         <h3 class="popup__title">Новое место</h3>
-        <form class="form form__edit" method="POST" name="formEdit" id="formAdd">
+        <form class="form form__edit" method="POST" name="formAdd" id="formAdd">
           <input id="placeName-input" name="placeName" type="text" class="form__input form__input_type_text" placeholder="Название" minlength="2" maxlength="30" required />
           <span id="placeName-input-error" class="form__input-error"></span>
           <input id="placeUrl-input" name="placeUrl" type="url" class="form__input form__input_type_text" placeholder="Ссылка на картинку" required />
           <span id="placeUrl-input-error" class="form__input-error"></span>
-          <button class="form__button button" type="submit">Сохранить</button>
+          <button class="form__button button" type="submit">Создать</button>
         </form>
       </div>
     </section>
@@ -61,18 +64,40 @@
         <h3 class="popup__title popup__title_image"></h3>
       </div>
     </section>
+    <section class="popup popup_remove-card popup_remove-card" id="popupRemove">
+      <div class="popup__container">
+        <button class="popup__close button"></button>
+        <h3 class="popup__title">Вы уверены?</h3>
+        <form class="form form__card-remove" method="POST" name="formRemove" id="formRemove">
+          <button class="form__button button form__button_remove-confirm" type="submit">Да</button>
+        </form>
+      </div>
+    </section>
+    <section class="popup popup_set-avatar" id="popupSetAvatar">
+      <div class="popup__container">
+        <button class="popup__close button"></button>
+        <h3 class="popup__title">Обновить аватар</h3>
+        <form class="form form__avatar" method="POST" name="formAvatar" id="formSetAvatar">
+          <input id="avatarUrl-input" name="avatarUrl" type="url" class="form__input form__input_type_text" placeholder="Ссылка на картинку" required />
+          <span id="avatarUrl-input-error" class="form__input-error"></span>
+          <button class="form__button button" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </section>
     <template id="cardTemplate">
       <div class="card">
         <div class="card__inner">
           <img class="card__image" src="" alt="" />
           <div class="card__caption">
             <h2 class="card__title"></h2>
-            <button class="card__like button button_type_like" aria-label="Лайкнуть" type="button"></button>
+            <div class="card__like-container">
+              <button class="card__like button button_type_like" aria-label="Лайкнуть" type="button"></button>
+            <span class="card__like-amount"></span>
+            </div>
           </div>
           <div class="card__remove button button_type_remove"></div>
         </div>
       </div>
     </template>
-    <!-- <script type="module" src="pages/index.js"></script> -->
   </body>
 </html>

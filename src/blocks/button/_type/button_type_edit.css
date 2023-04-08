@@ -2,7 +2,8 @@
   border: 1px solid #fff;
   height: 24px;
   width: 24px;
-  background-image: url('../../../images/icon-edit.svg');
+  background-image: url('../../../images/pencil.svg');
+  background-size: 10px 10px;
   background-repeat: no-repeat;
   background-position: center;
   position: relative;

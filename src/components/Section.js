@@ -7,7 +7,8 @@ class Section {
     this._container = document.querySelector(selector);
   }
 
-  renderItems() {
+  renderItems(items) {
+    this._items = items
     this._items.forEach((item) => {
       const cardElement = this._renderer(item);
     });

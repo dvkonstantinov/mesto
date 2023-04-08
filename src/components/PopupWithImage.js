@@ -9,11 +9,9 @@ class PopupWithImage extends Popup {
   }
 
   open(title, url) {
-    this._popup.classList.add("popup_opened");
+    super.open()
     this._image.src = url;
     this._image.alt = title;
     this._title.textContent = title;
-    document.addEventListener("keydown", (e) => this._handleEscClose(e));
-    
   }
 }

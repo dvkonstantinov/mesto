@@ -1,5 +1,7 @@
+import { Api } from "../components/Api.js";
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
+import { PopupDelete } from "../components/PopupDelete.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { Section } from "../components/Section.js";
@@ -10,35 +12,9 @@ const formEditElement = document.querySelector("#formEdit");
 const formAddElement = document.querySelector("#formAdd");
 const cardAddBtn = document.querySelector(".profile_add");
 const cardsContainer = document.querySelector(".cards");
+const UploadAvatarButton = document.querySelector(".profile__image-button");
 const profileName = document.querySelector('#popupEdit input[name="name"]');
 const profileStatus = document.querySelector('#popupEdit input[name="status"]');
-
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
 
 const formConfig = {
   formSelector: ".form",
@@ -50,24 +26,105 @@ const formConfig = {
 };
 
 function createCard(data, template) {
-  const card = new Card(data, template, () => {
-    popupImage.open(data.name, data.link);
-  });
+  const card = new Card(
+    data,
+    template,
+    userInfo.getUserId(),
+    () => {
+      popupImage.open(data.name, data.link);
+    },
+    deleteIconClick,
+    handleLikeClick
+  );
   const cardElement = card.generateCard();
   return cardElement;
 }
 
 function saveEditForm(e, dataFormValues) {
   e.preventDefault();
-  userInfo.setUserInfo(dataFormValues.name, dataFormValues.status);
+  popupAdd.toggleLoading(true);
+  api.setUserInfo(dataFormValues.name, dataFormValues.status).then((userData) => {
+    userInfo.setUserInfo(userData.name, userData.about);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+  .finally(() => {
+    popupAdd.toggleLoading(false);
+  });
+
   popupEdit.close();
+}
+
+function deleteIconClick(card) {
+  popupRemove.setRemoveCard(card);
+  popupRemove.open();
+}
+
+function handleLikeClick(card) {
+  const cardId = card.getCardId();
+  if (!card.isLiked()) {
+    api.likeCard(cardId).then((responseData) => {
+      const newLikeAmount = responseData.likes.length;
+      card.likeToggle(newLikeAmount);
+    });
+  } else {
+    api.dislikeCard(cardId).then((responseData) => {
+      const newLikeAmount = responseData.likes.length;
+      card.likeToggle(newLikeAmount);
+    });
+  }
+}
+
+function submitRemovePopup(e, card) {
+  const cardId = card.getCardId();
+  e.preventDefault();
+  api
+    .removeCard(cardId)
+    .then(() => {
+      card.removeCard();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  popupRemove.close();
+}
+
+function updateAvatar(e, dataFormValues) {
+  e.preventDefault();
+  popupAdd.toggleLoading(true);
+  const avatarUrl = dataFormValues.avatarUrl;
+  api
+    .updateAvatar(avatarUrl)
+    .then((incomingData) => {
+      console.log(incomingData);
+      userInfo.setUserAvatar(incomingData.avatar);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      popupAdd.toggleLoading(false);
+    });
+  popupAvatar.close();
 }
 
 function saveAddForm(e, dataFormValues) {
   e.preventDefault();
-  const cardData = { name: dataFormValues.placeName, link: dataFormValues.placeUrl };
-  const cardElement = createCard(cardData, "#cardTemplate");
-  cardRenderer.addItem(cardElement);
+  popupAdd.toggleLoading(true);
+  api
+    .addCard(dataFormValues.placeName, dataFormValues.placeUrl)
+    .then((incomingCardData) => {
+      console.log(incomingCardData);
+      const cardElement = createCard(incomingCardData, "#cardTemplate");
+      cardRenderer.addItem(cardElement);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      popupAdd.toggleLoading(false);
+    });
   popupAdd.close();
   formAdd.resetValidation();
 }
@@ -84,26 +141,43 @@ cardAddBtn.addEventListener("click", () => {
   popupAdd.open();
 });
 
+UploadAvatarButton.addEventListener("click", () => {
+  popupAvatar.open();
+});
+
 const userInfo = new UserInfo({
   nameSelector: ".profile__name",
   statusSelector: ".profile__status",
+  userAvatar: ".profile__image",
 });
 
 const popupEdit = new PopupWithForm("#popupEdit", saveEditForm);
 const popupAdd = new PopupWithForm("#popupAdd", saveAddForm);
+const popupAvatar = new PopupWithForm("#popupSetAvatar", updateAvatar);
 const popupImage = new PopupWithImage("#popupImage");
+const popupRemove = new PopupDelete("#popupRemove", submitRemovePopup);
 popupEdit.setEventListeners();
 popupAdd.setEventListeners();
 popupImage.setEventListeners();
+popupRemove.setEventListeners();
+popupAvatar.setEventListeners();
 
 const formEdit = new FormValidator(formConfig, formEditElement);
 const formAdd = new FormValidator(formConfig, formAddElement);
 formEdit.enableValidation();
 formAdd.enableValidation();
 
+const api = new Api({
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-63",
+  headers: {
+    authorization: "3a824396-4a26-49de-be67-e18c68326ddb",
+    "Content-Type": "application/json",
+  },
+});
+
 const cardRenderer = new Section(
   {
-    items: initialCards,
+    items: [],
     renderer: (item) => {
       const cardElement = createCard(item, "#cardTemplate");
       cardsContainer.prepend(cardElement);
@@ -112,4 +186,13 @@ const cardRenderer = new Section(
   ".cards"
 );
 
-cardRenderer.renderItems();
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, cardData]) => {
+    userInfo.setUserId(userData._id);
+    cardRenderer.renderItems(cardData.reverse());
+    userInfo.setUserInfo(userData.name, userData.about);
+    userInfo.setUserAvatar(userData.avatar);
+  })
+  .catch((err) => {
+    console.log(err);
+  });

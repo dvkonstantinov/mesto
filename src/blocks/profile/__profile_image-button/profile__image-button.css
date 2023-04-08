@@ -1,0 +1,28 @@
+.profile__image-button {
+  border-radius: 50%;
+  border: none;
+    color: transparent;
+    display: inline-block;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.profile__image-button:hover::before {
+  background-image: url("../../../images/pencil.svg");
+  background-color: rgba(0, 0, 0, 0.8);
+  background-size: 26px 26px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.profile__image-button:before {
+  overflow: hidden;
+  display: block;
+  content: "";
+  width: 120px;
+  height: 120px;
+  background-color: transparent;
+  position: absolute;
+  border-radius: 50%;
+  cursor: pointer;
+}
