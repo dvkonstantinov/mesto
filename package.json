@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "dev": "webpack serve"
-    // "predeploy": "npm run build",
-    // "deploy": "gh-pages -d dist"
+    "dev": "webpack serve",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "author": "dvkonstantinov",
   "license": "ISC",
